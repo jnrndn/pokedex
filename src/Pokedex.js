@@ -10,7 +10,7 @@ class Pokedex extends React.Component {
     }
 
     componentDidMount() {
-        const endpoint = 'pokemon';
+        const endpoint = 'pokemon?limit=50';
 
         fetch(`${this.apiUrl}${endpoint}`)
             .then(res => res.json())
