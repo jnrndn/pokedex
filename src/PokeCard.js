@@ -1,15 +1,20 @@
 import React from 'react';
 import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core';
 
+const headerStyle = {
+    'text-align': 'center',
+    'text-transform': 'capitalize'
+};
+
 const PokeCard = (props) => (
     <Card className="card">
-        <CardHeader
+        <CardHeader style={headerStyle}
             title={props.pokemon.name}
         />
         <CardMedia
             component="img"
             alt={props.pokemon.name}
-            height="140px"
+            height="170px"
             image={props.pokemon.sprites.front_default}
             title={props.pokemon.name}
         />
