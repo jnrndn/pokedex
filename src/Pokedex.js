@@ -32,6 +32,14 @@ class Pokedex extends React.Component {
             .catch(console.error)
     }
 
+    showDetails = (event) => {
+        event.preventDefault();
+        console.log(event);
+
+
+        // this.props.history.push(`/details/${q}`);
+    }
+
     render() {
         return (
             <div>
@@ -41,7 +49,9 @@ class Pokedex extends React.Component {
                         Object.keys(this.state.pokemons).map((key) => (
                             <PokeCard
                                 key={key}
+                                id={this.state.pokemons[ key ].id}
                                 pokemon={this.state.pokemons[ key ]}
+                                showDetails={this.showDetails}
                             />
                         ))
                     }

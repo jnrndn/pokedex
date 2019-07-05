@@ -7,7 +7,7 @@ const headerStyle = {
 };
 
 const PokeCard = (props) => (
-    <Card className="card">
+    <Card className="card" onClick={props.showDetails}>
         <CardHeader style={headerStyle}
             title={props.pokemon.name}
         />
@@ -23,7 +23,7 @@ const PokeCard = (props) => (
                 Object.values(props.pokemon.types).map((types) => (
                     <Typography
                         key={`${props.pokemon.name}-${types.type.name}`}
-                        variant="body2"
+                        variant="body1"
                         color="textSecondary"
                         component="p"
                     >
