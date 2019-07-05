@@ -13,5 +13,14 @@ code {
 }
 
 .card {
-  max-width: 180px;
+  width: 195px;
+  margin: 5px;
+}
+
+.card-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }

@@ -36,14 +36,16 @@ class Pokedex extends React.Component {
         return (
             <div>
                 <Header />
-                {
-                    Object.keys(this.state.pokemons).map((key) => (
-                        <PokeCard
-                            key={key}
-                            pokemon={this.state.pokemons[ key ]}
-                        />
-                    ))
-                }
+                <div className="card-container">
+                    {
+                        Object.keys(this.state.pokemons).map((key) => (
+                            <PokeCard
+                                key={key}
+                                pokemon={this.state.pokemons[ key ]}
+                            />
+                        ))
+                    }
+                </div>
             </div>
         );
     }

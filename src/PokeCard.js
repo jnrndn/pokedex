@@ -9,21 +9,25 @@ const PokeCard = (props) => (
         <CardMedia
             component="img"
             alt={props.pokemon.name}
-            width="140px"
+            height="140px"
             image={props.pokemon.sprites.front_default}
             title={props.pokemon.name}
         />
         <CardContent>
             {
-                Object.keys(props.pokemon.types).map((type) => (
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {type.name}
+                Object.values(props.pokemon.types).map((types) => (
+                    <Typography
+                        key={`${props.pokemon.name}-${types.type.name}`}
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                    >
+                        {types.type.name}
                     </Typography>
                 ))
             }
         </CardContent>
     </Card>
 );
-
 
 export default PokeCard;
