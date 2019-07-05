@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import PokeCard from './PokeCard';
 
 class Pokedex extends React.Component {
 
@@ -20,13 +21,13 @@ class Pokedex extends React.Component {
             .catch(console.error)
     }
 
-    fetchAndSavePokemonData = (pokemonData) =>{
+    fetchAndSavePokemonData = (pokemonData) => {
         fetch(pokemonData.url)
             .then(res => res.json())
             .then((pokemon) => {
-                const pokemons = { ...this.state.pokemons};
-                pokemons[pokemonData.name] = pokemon;
-                this.setState({pokemons});
+                const pokemons = { ...this.state.pokemons };
+                pokemons[ pokemonData.name ] = pokemon;
+                this.setState({ pokemons });
             })
             .catch(console.error)
     }
@@ -35,6 +36,14 @@ class Pokedex extends React.Component {
         return (
             <div>
                 <Header />
+                {
+                    Object.keys(this.state.pokemons).map((key) => (
+                        <PokeCard
+                            key={key}
+                            pokemon={this.state.pokemons[ key ]}
+                        />
+                    ))
+                }
             </div>
         );
     }
