@@ -18,9 +18,9 @@ class Pokedex extends React.Component {
                 window.innerHeight + document.documentElement.scrollTop
                 === document.documentElement.offsetHeight
             ) {
-                const foo = this.state.next.split('?');
-                const endpoint = foo[ 1 ];
-                this.loadPokemons(`pokemon?${endpoint}`);
+                const splitedUrl = this.state.next.split('?');
+                const params = splitedUrl[ 1 ];
+                this.loadPokemons(`pokemon?${params}`);
             }
         }, 100);
     }
