@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import PokeCard from './PokeCard';
+import { debounce } from 'lodash';
 
 class Pokedex extends React.Component {
 
@@ -8,15 +9,34 @@ class Pokedex extends React.Component {
 
     state = {
         pokemons: {},
+        next: '',
     }
 
     componentDidMount() {
-        const endpoint = 'pokemon?limit=50';
+        window.onscroll = debounce(() => {
+            if (
+                window.innerHeight + document.documentElement.scrollTop
+                === document.documentElement.offsetHeight
+            ) {
+                const foo = this.state.next.split('?');
+                const endpoint = foo[ 1 ];
+                console.log('scrolling')
+                this.loadPokemons(`pokemon?${endpoint}`);
+            }
+        }, 100);
+    }
 
+    componentWillMount() {
+        this.loadPokemons();
+    }
+
+    loadPokemons = (endpoint) => {
+        endpoint = endpoint || 'pokemon?';
         fetch(`${this.apiUrl}${endpoint}`)
             .then(res => res.json())
             .then((data) => {
                 data.results.map((pokemonData) => this.fetchAndSavePokemonData(pokemonData));
+                this.setState({ next: data.next })
             })
             .catch(console.error)
     }
@@ -32,12 +52,8 @@ class Pokedex extends React.Component {
             .catch(console.error)
     }
 
-    showDetails = (event) => {
-        event.preventDefault();
-        console.log(event);
-
-
-        // this.props.history.push(`/details/${q}`);
+    showDetails = (id) => {
+        this.props.history.push(`/details/${id}`);
     }
 
     render() {
