@@ -20,7 +20,6 @@ class Pokedex extends React.Component {
             ) {
                 const foo = this.state.next.split('?');
                 const endpoint = foo[ 1 ];
-                console.log('scrolling')
                 this.loadPokemons(`pokemon?${endpoint}`);
             }
         }, 100);
@@ -58,20 +57,17 @@ class Pokedex extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <div className="card-container">
-                    {
-                        Object.keys(this.state.pokemons).map((key) => (
-                            <PokeCard
-                                key={key}
-                                id={this.state.pokemons[ key ].id}
-                                pokemon={this.state.pokemons[ key ]}
-                                showDetails={this.showDetails}
-                            />
-                        ))
-                    }
-                </div>
+            <div className="card-container">
+                {
+                    Object.keys(this.state.pokemons).map((key) => (
+                        <PokeCard
+                            key={key}
+                            id={this.state.pokemons[ key ].id}
+                            pokemon={this.state.pokemons[ key ]}
+                            showDetails={this.showDetails}
+                        />
+                    ))
+                }
             </div>
         );
     }
